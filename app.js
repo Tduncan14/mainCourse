@@ -1,5 +1,9 @@
-console.log(module);
-var logger = require("./logger.js");
 
+const logger = require("./logger.js");
+const path = require('path');
 
-console.log(logger);
+logger("Treek");
+
+var pathObj = path.parse(__filename);
+
+console.log(pathObj);
