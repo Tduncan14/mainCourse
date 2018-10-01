@@ -1,0 +1,22 @@
+// loading a module
+const http = require("http");
+
+// creates the server with a call backfunction
+const server = http.createServer(function(req,res){
+    if(req.url === '/'){
+        // write on the page
+        res.write('Hello World);
+        // then ends the  server response process
+        res.end();
+    }
+
+    // if the api end up being something else
+
+  if(req.url === '/api/courses){
+      res.write(JSON.stringify([1,2,3]));
+      res.end();
+  }
+});
+// listens on the local port 3000
+server.listen(3000);
+console.log('Listening on port 3000);

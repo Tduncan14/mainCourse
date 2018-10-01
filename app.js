@@ -1,14 +1,21 @@
 
-const logger = require("./logger.js");
-const path = require('path');
-const os = require('os');
-const fs = require('fs');
-// calls out the eventEmitter class a blue print
-const EventEmitter = require('events');
-// building a web server http
-
-// create an instance of the class
 
 const http = require("http");
 
-http.createServer();
+// creates a server
+const server = http.createServer( function ( req, res){
+    if(req.url === '/'){
+        res.write('Hello World');
+        res.end();
+    }
+
+    if( req.url === '/api/courses'){
+       res.write(JSON.stringify([1,2,3]));
+       res.end();
+    }
+});
+
+
+server.listen(3000);
+
+console.log('Listening on port 3000');
