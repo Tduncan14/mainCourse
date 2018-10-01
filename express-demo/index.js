@@ -25,6 +25,10 @@ app.get('/api/courses', function(req,res) {
 app.get('/api/courses/:id', function(req,res){
     // to read the parameter
  const course=courses.find(c => c.id === parseInt(req.params.id));
+  if(!course) res.status(404).send("The course witht the given id is not found.");
+ 
+   res.send(course);
+   
  // to parse a string into an integer parseInt
 });
 // endport should be like this /api/courses/1
