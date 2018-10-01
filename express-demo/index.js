@@ -24,8 +24,8 @@ app.get('/api/courses', function(req,res) {
 // adding a parameter with an id
 app.get('/api/courses/:id', function(req,res){
     // to read the parameter
-   res.send(req.param,s);
-
+ const course=courses.find(c => c.id === parseInt(req.params.id));
+ // to parse a string into an integer parseInt
 });
 // endport should be like this /api/courses/1
 
