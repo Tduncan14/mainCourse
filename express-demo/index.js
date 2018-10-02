@@ -2,6 +2,8 @@
 const express = require('express');
  // storing the express instance in a variable
 const app=express();
+// loading the  joi module  is a class
+const Joi = require("joi");
 // to parse and read through json
 // returns a middleware through a pipeline
 app.use(express.json());
@@ -35,6 +37,12 @@ app.get('/api/courses/:id', function(req,res){
    
    // creates and updates
    app.post('/api/courses', (req,res) => {
+       const schema = {
+           name: Joi.string().min(3).required()
+       }
+
+      const result = Joi.validate(req.body, schema);
+       console.log(result);
 
     //creating input validation
     if(!req.body.name || req.body.name.length <3){
