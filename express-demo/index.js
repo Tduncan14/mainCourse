@@ -29,6 +29,19 @@ app.get('/api/courses/:id', function(req,res){
  
    res.send(course);
    
+   // creates and updates
+   app.post('/api/courses', (req,res) => {
+    
+     const course = {
+        id: courses.length + 1,
+        name: req.body.name
+     };
+
+   });
+
+
+
+
  // to parse a string into an integer parseInt
 });
 // endport should be like this /api/courses/1
