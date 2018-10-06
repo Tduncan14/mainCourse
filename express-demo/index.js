@@ -30,8 +30,8 @@ app.get('/api/courses', function(req,res) {
 app.get('/api/courses/:id', function(req,res){
     // to read the parameter
  const course=courses.find(c => c.id === parseInt(req.params.id));
-  if(!course) {res.status(404).send("The course witht the given id is not found.")
-  return;}
+  if(!course) nores.status(404).send("The course witht the given id is not found.")
+  return;
  
    res.send(course);
    
@@ -64,7 +64,27 @@ app.get('/api/courses/:id', function(req,res){
    });
 
 // updating an route handler/ put method updates the resources
-app.put('')
+app.put('/api/courses/:id', function(req,res){
+    const course=courses.find(c => c.id === parseInt(req.params.id));
+    if(!course) res.status(404).send("The course witht the given id is not found.")
+// Look up the course
+// if course does not exist, send 404
+const schema = {
+    name: Joi.string().min(3).required()
+};
+
+const result = Joi.validate(req.body, schema);
+console.log(result);
+if(!course) nores.status(404).send("The course witht the given id is not found.")
+return;
+
+
+// validate
+// if invalid, return 400- Bad request
+
+// update course
+// return the updated course
+});
 
 
  // to parse a string into an integer parseInt
