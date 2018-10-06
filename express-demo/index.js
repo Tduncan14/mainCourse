@@ -39,16 +39,18 @@ app.get('/api/courses/:id', function(req,res){
    app.post('/api/courses', (req,res) => {
        const schema = {
            name: Joi.string().min(3).required()
-       }
+       };
 
       const result = Joi.validate(req.body, schema);
        console.log(result);
 
     //creating input validation
-    if(!req.body.name || req.body.name.length <3){
+    if(result.error) {
+// if(!req.body.name || req.body.name.length <3){
         // status code 400 means Bad request
-        res.status(400).send('Name is required and should be minimum 3 characters');
-    }
+        res.status(400).send(result.error.data.details[0].message);
+        return;
+}
     
      const course = {
         id: courses.length + 1,
@@ -61,7 +63,8 @@ app.get('/api/courses/:id', function(req,res){
      res.send(course);
    });
 
-
+// updating an route handler/ put method updates the resources
+app.put('')
 
 
  // to parse a string into an integer parseInt

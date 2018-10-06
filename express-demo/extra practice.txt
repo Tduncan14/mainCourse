@@ -1,0 +1,65 @@
+// downloading the module express
+
+const express = require('express');
+// storing the express instance in a variable
+
+const app = express();
+// loading the joi module is a class
+const Joi = require("joi");
+// to prase and read through json
+// returnsa middleware through a pipline
+app.use(express.json());
+
+const courses = [
+    {
+        id:1, name:'course1'
+    },
+    {
+       id:2, name: 'course2'
+    },
+    {
+       id:3, name: course3
+    }
+];
+// http post request and endpoint gives out a listner
+// needs a route location then a call function the event handler
+
+// gets the routes for the client/ then has a callback function request and response
+app.get("/",function(req,res){
+     res.send('Hello World!!!");
+});
+// creating another route
+app.get('/api/courses', function(req,res){
+    // to read the parameter
+  const course = courses.find(c => c.id === parseInt(req.params.id));
+  if(!course) {res.status(404).send("The course with the given id is not find)
+  return;}
+     res.send(course);
+     // creates and updates
+     app.post('/api/courses',(req,res) => {
+          const schema ={
+              name: Joi.string().min(3).required()
+          };
+          const result = Joi.validate(req.body,schema);
+          console.log(result);
+
+          if(!req.body.name|| req.body.name.length <3){
+              res.status(400). send('Name has to be 3 or more);
+            
+            const course = {
+                id: courses.length +1.
+                // it is a json object so you will need to parse it.
+                name: req.body.name
+            };
+            // pushes the object in the array
+            courses.push(course);
+            // once the sever creates a new object or resource you  should post it to the body
+            res.send(course);
+          }
+     });
+    
+});
+ const port = process.env.PORT || 3000;
+     app.listen(port,() => console.log(`Listening on port ${port}));
+
+// to parse a string into interger use parseINt
